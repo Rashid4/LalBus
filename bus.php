@@ -14,6 +14,7 @@
 <link href="plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 <body>
 
@@ -40,7 +41,25 @@
 						<nav class="main_nav ml-auto">
 							<ul class="main_nav_list">
 								<li class="main_nav_item"><a href="index.php">Home</a></li>
-								<li class="main_nav_item active"><a href="#">Bus</a></li>
+								<li class="main_nav_item active">
+									<div class="dropdown">
+										<a class="dropbtn" id="id1" onmouseover="makeActive()" href="bus.php">Bus</a>
+										<div class="dropdown-content">
+											<a href="#">Anando</a>
+											<a href="#">Baishakhi</a>
+											<a href="#">Chaitali</a>
+											<a href="#">Falguni</a>
+											<a href="#">Hemonto</a>
+											<a href="#">Isha Kha</a>
+											<a href="#">Khonika</a>
+											<a href="#">Kinchit</a>
+											<a href="#">Moitree</a>
+											<a href="#">Shrabon</a>
+											<a href="#">Taranga</a>
+											<a href="#">Ullash</a>
+										</div>
+									</div>
+								</li>
 								<li class="main_nav_item"><a href="about.php">About us</a></li>
 								<li class="main_nav_item"><a href="contact.php">Contact</a></li>
 							</ul>

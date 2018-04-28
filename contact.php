@@ -10,6 +10,11 @@
 <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/contact_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<link rel="icon" href="images/DU.PNG">
+<?php
+	include "Myheader.php";
+?>
 </head>
 <body>
 
@@ -36,7 +41,16 @@
 						<nav class="main_nav ml-auto">
 							<ul class="main_nav_list">
 								<li class="main_nav_item"><a href="index.php">Home</a></li>
-								<li class="main_nav_item"><a href="bus.php">Bus</a></li>
+								<li class="main_nav_item">
+									<div class="dropdown">
+										<a class="dropbtn" id="id1" onmouseover="makeActive()" href="bus.php">Bus</a>
+										<div class="dropdown-content">
+											<?php
+												addDropdown();
+											?>
+										</div>
+									</div>
+								</li>
 								<li class="main_nav_item"><a href="about.php">About us</a></li>
 								<li class="main_nav_item active"><a href="#">Contact</a></li>
 							</ul>

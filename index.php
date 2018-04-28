@@ -14,6 +14,11 @@
 <link href="plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<link rel="icon" href="images/DU.PNG">
+<?php
+	include "Myheader.php";
+?>
 </head>
 <body>
 
@@ -40,7 +45,16 @@
 						<nav class="main_nav ml-auto">
 							<ul class="main_nav_list">
 								<li class="main_nav_item active"><a href="#">Home</a></li>
-								<li class="main_nav_item dropdown"><a href="bus.php">Bus</a></li>
+								<li class="main_nav_item">
+									<div class="dropdown">
+										<a class="dropbtn" id="id1" onmouseover="makeActive()" href="bus.php">Bus</a>
+										<div class="dropdown-content">
+											<?php
+												addDropdown();
+											?>
+										</div>
+									</div>
+								</li>
 								<li class="main_nav_item"><a href="about.php">About us</a></li>
 								<li class="main_nav_item"><a href="contact.php">Contact</a></li>
 							</ul>
