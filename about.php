@@ -53,6 +53,17 @@
 								</li>
 								<li class="main_nav_item active"><a href="#">About us</a></li>
 								<li class="main_nav_item"><a href="contact.php">Contact</a></li>
+								<?php
+									if(isset($_SESSION['email']))
+									{
+										echo '<li class="main_nav_item"><a href="profile.php">Profile</a></li>';
+										echo '<li class="main_nav_item"><a href="logout.php">Logout</a></li>';
+									}
+									else
+									{
+										echo '<li class="main_nav_item"><a href="Login.php">Sign in</a></li>';
+									}
+								?>
 							</ul>
 						</nav>
 
@@ -86,17 +97,26 @@
 		<div class="menu_inner menu_mm">
 			<div class="menu menu_mm">
 				<div class="menu_search_form_container">
-					<form action="#" id="menu_search_form">
-						<input type="search" class="menu_search_input menu_mm">
+					<form action="search.php" id="menu_search_form">
+						<input type="search" name="search_input" class="menu_search_input menu_mm">
 						<button id="menu_search_submit" class="menu_search_submit" type="submit"><img src="images/search_2.png" alt=""></button>
 					</form>
 				</div>
 				<ul class="menu_list menu_mm">
-					<li class="menu_item menu_mm"><a href="index.html">Home</a></li>
+					<li class="menu_item menu_mm"><a href="index.php">Home</a></li>
 					<li class="menu_item menu_mm"><a href="#">About us</a></li>
-					<li class="menu_item menu_mm"><a href="offers.html">Offers</a></li>
-					<li class="menu_item menu_mm"><a href="news.html">News</a></li>
-					<li class="menu_item menu_mm"><a href="contact.html">Contact</a></li>
+					<li class="menu_item menu_mm"><a href="contact.php">Contact</a></li>
+					<?php
+						if(isset($_SESSION['email']))
+						{
+							echo '<li class="menu_item menu_mm"><a href="profile.php">Profile</a></li>';
+							echo '<li class="menu_item menu_mm"><a href="logout.php">Logout</a></li>';
+						}
+						else
+						{
+							echo '<li class="menu_item menu_mm"><a href="Login.php">Signin</a></li>';
+						}
+					?>
 				</ul>
 
 				<!-- Menu Social -->
@@ -224,7 +244,7 @@
 
 	<!-- Milestones -->
 
-	<div class="milestones">
+<!--	<div class="milestones">
 		<div class="milestones_background parallax-window" data-parallax="scroll" data-image-src="images/fact_background.jpg" data-speed="0.8"></div>
 		<div class="container">
 			<div class="row">
@@ -246,7 +266,7 @@
 			<div class="row milestones_container">
 
 				<!-- Milestone -->
-				<div class="col-lg-3 milestone_col">
+<!--				<div class="col-lg-3 milestone_col">
 					<div class="milestone text-center">
 						<div class="milestone_icon"><img src="images/milestone_1.svg" alt=""></div>
 						<div class="milestone_counter" data-end-value="17">0</div>
@@ -255,7 +275,7 @@
 				</div>
 
 				<!-- Milestone -->
-				<div class="col-lg-3 milestone_col">
+<!--				<div class="col-lg-3 milestone_col">
 					<div class="milestone text-center">
 						<div class="milestone_icon"><img src="images/milestone_2.svg" alt=""></div>
 						<div class="milestone_counter" data-end-value="213">0</div>
@@ -264,7 +284,7 @@
 				</div>
 
 				<!-- Milestone -->
-				<div class="col-lg-3 milestone_col">
+<!--				<div class="col-lg-3 milestone_col">
 					<div class="milestone text-center">
 						<div class="milestone_icon"><img src="images/milestone_3.svg" alt=""></div>
 						<div class="milestone_counter" data-end-value="11923">0</div>
@@ -273,7 +293,7 @@
 				</div>
 
 				<!-- Milestone -->
-				<div class="col-lg-3 milestone_col">
+<!--				<div class="col-lg-3 milestone_col">
 					<div class="milestone text-center">
 						<div class="milestone_icon"><img src="images/milestone_4.svg" alt=""></div>
 						<div class="milestone_counter" data-end-value="15">0</div>
@@ -283,11 +303,11 @@
 
 			</div>
 		</div>
-	</div>
+	</div>-->
 
 	<!-- Services -->
 
-	<div class="services">
+<!--	<div class="services">
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -299,7 +319,6 @@
 			</div>
 			<div class="row icon_box_container">
 
-				<!-- Icon Box -->
 				<div class="col-lg-4 icon_box_col">
 					<div class="icon_box">
 						<div class="icon_box_image"><img src="images/service_1.svg" class="svg" alt="https://www.flaticon.com/authors/monkik"></div>
@@ -309,7 +328,6 @@
 					</div>
 				</div>
 
-				<!-- Icon Box -->
 				<div class="col-lg-4 icon_box_col">
 					<div class="icon_box">
 						<div class="icon_box_image"><img src="images/service_2.svg" class="svg" alt="https://www.flaticon.com/authors/monkik"></div>
@@ -319,7 +337,6 @@
 					</div>
 				</div>
 
-				<!-- Icon Box -->
 				<div class="col-lg-4 icon_box_col">
 					<div class="icon_box">
 						<div class="icon_box_image"><img src="images/service_3.svg" class="svg" alt="https://www.flaticon.com/authors/monkik"></div>
@@ -331,12 +348,11 @@
 
 			</div>
 		</div>
-	</div>
+	</div>-->
 
 	<!-- Newsletter -->
 
-	<div class="newsletter">
-		<!-- Image by https://unsplash.com/@garciasaldana_ -->
+<!--	<div class="newsletter">
 		<div class="newsletter_background" style="background-image:url(images/newsletter.jpg)"></div>
 		<div class="container">
 			<div class="row">
@@ -355,18 +371,16 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 
 	<!-- Footer -->
 
-	<footer class="footer">
+	<!--<footer class="footer">
 		<div class="container">
 			<div class="row">
 
-				<!-- Footer Column -->
 				<div class="col-lg-4 footer_col">
 					<div class="footer_about">
-						<!-- Logo -->
 						<div class="logo_container">
 							<div class="logo">
 								<div>destino</div>
@@ -375,19 +389,17 @@
 							</div>
 						</div>
 						<div class="footer_about_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pulvinar sed mauris eget tincidunt. Sed lectus nulla, tempor vel eleifend quis, tempus rut rum metus. Pellentesque ultricies enim eu quam fermentum hendrerit.</div>
-						<div class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						<div class="copyright">
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+</div>
 					</div>
 				</div>
 
-				<!-- Footer Column -->
 				<div class="col-lg-4 footer_col">
 					<div class="footer_latest">
 						<div class="footer_title">Latest News</div>
 						<div class="footer_latest_content">
 
-							<!-- Footer Latest Post -->
 							<div class="footer_latest_item">
 								<div class="footer_latest_image"><img src="images/latest_1.jpg" alt="https://unsplash.com/@peecho"></div>
 								<div class="footer_latest_item_content">
@@ -396,7 +408,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								</div>
 							</div>
 
-							<!-- Footer Latest Post -->
 							<div class="footer_latest_item">
 								<div class="footer_latest_image"><img src="images/latest_2.jpg" alt="https://unsplash.com/@sanfrancisco"></div>
 								<div class="footer_latest_item_content">
@@ -409,7 +420,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					</div>
 				</div>
 
-				<!-- Footer Column -->
 				<div class="col-lg-4 footer_col">
 					<div class="tags footer_tags">
 						<div class="footer_title">Tags</div>
@@ -429,7 +439,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 			</div>
 		</div>
-	</footer>
+	</footer>-->
 </div>
 
 <script src="js/jquery-3.2.1.min.js"></script>

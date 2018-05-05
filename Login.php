@@ -1,51 +1,88 @@
+<?php
+	session_start();
+	$err = "";
+	if(isset($_SESSION['email']))
+	{
+		echo "Heading<br>";
+		header('location: profile.php');
+	}
+	if(isset($_GET['err']))
+	{
+		if($_GET['err'] == 'p') $err = 'Registered but password not correct. If you forgot your password you can reset it <a href="reset.php">here</a>';
+		if($_GET['err'] == 'u') $err = 'You are not registered. register <a href="register.php">here</a>';
+	}
+?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Log in</title>
+		<title>Login page</title>
+		<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link href='mystyle.css' rel='stylesheet' type='text/css'>
+		<link rel='icon' href='images/DU.PNG'>
 		<style>
 			body{
-				background-color: lightgreen;
-				font-size: 100%
+				background-image: url('images/dark_wall.png');
 			}
-			input[type=text]{
-				padding: 5px;
-				margin: 8px;
-				border: 1px solid black;
-				border-radius: 5px;
+			h1{
+				text-align: center;
+				padding:30px 0px 0px 0px;
+				font:25px Oswald;
+				color:#FFF;
+				text-transform:uppercase;
+				text-shadow:#000 0px 1px 5px;
+				margin:0px;
 			}
-			input[type=text]:focus{
-				background-color: lightgray;
+
+			p{
+				font:13px Open Sans;
+				color:#6E6E6E;
+				text-shadow:#000 0px 1px 5px;
+				margin-bottom:30px;
 			}
-			input[type=button]{
-				background-color: azure;
-				padding: 10px;
-				border: 2px solid darkred;
-			}
-			input[type=button]:hover{
-				background-color: cyan;
+
+			a{
+				text-decoration: none;
+				color: #207f86;
 			}
 		</style>
+		<script src='js/jquery-3.2.1.min.js'></script>
 	</head>
 	<body>
-		<h1><font color="white">Login title</font></h1>
-		<form>
-			<table>
-				<tr>
-					<td><input type="button" name="Sign_up" onclick="location.href='Registration.php';" value="Register"/></td>
-				</tr>
-				<tr>
-					<td align="right">Name:</td>
-					<td align="left"><input type="text" name="user_name" size="20"/></td>
-				</tr>
-				<tr>
-					<td align="right">E-mail:</td>
-					<td align="left"><input type="text" name="gmail" size="20"/></td>
-				</tr>
-				<tr>
-					<td align="right">Registered?</td>
-					<td align="left"><input type="button" onclick="location.href='index.php';" value="Sign in"/></td>
-				</tr>
-			</table>
-		</form>
+		<div class="wrapper">
+			<h1>Login to your existing account</h1>
+			<p>To sign-up for a free basic account please go to <a href='register.php'>Registration page</a>.</p>
+			<p>You can directly go to <a href='index.php'>Home</a> page</p>
+			<form class="form" method="post" action="profile.php">
+				<input type="text" class="name" name="logemail" placeholder="Email" required>
+				<div>
+					<p class="name-help">Please enter your email by which you have registered.</p>
+				</div>
+				<input type="password" class="pass" name="logpass" placeholder="Password" required>
+				<div>
+					<p class="pass-help">Please enter your password.</p>
+				</div>
+				<div>
+					<?php
+						echo "<p class='error'>$err</p>";
+					?>
+				</div>
+				<input type="submit" class="submit" value="login" title="Login button">
+			</form>
+		</div>
+		<p class="optimize">Optimized for Chrome & Firefox!</p>
+		<script>
+			$(".name").focus(function(){
+				$(".name-help").slideDown(500);
+			}).blur(function(){
+				$(".name-help").slideUp(500);
+			});
+			
+			$(".pass").focus(function(){
+				$(".pass-help").slideDown(500);
+			}).blur(function(){
+				$(".pass-help").slideUp(500);
+			});
+		</script>
 	</body>
 </html>

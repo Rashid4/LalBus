@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	include "Myheader.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +16,6 @@
 <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
 <link rel="stylesheet" type="text/css" href="mystyle.css">
 <link rel="icon" href="images/DU.PNG">
-<?php
-	include "Myheader.php";
-?>
 </head>
 <body>
 
@@ -53,6 +54,17 @@
 								</li>
 								<li class="main_nav_item"><a href="about.php">About us</a></li>
 								<li class="main_nav_item active"><a href="#">Contact</a></li>
+								<?php
+									if(isset($_SESSION['email']))
+									{
+										echo '<li class="main_nav_item"><a href="profile.php">Profile</a></li>';
+										echo '<li class="main_nav_item"><a href="logout.php">Logout</a></li>';
+									}
+									else
+									{
+										echo '<li class="main_nav_item"><a href="Login.php">Sign in</a></li>';
+									}
+								?>
 							</ul>
 						</nav>
 
@@ -92,11 +104,20 @@
 					</form>
 				</div>
 				<ul class="menu_list menu_mm">
-					<li class="menu_item menu_mm"><a href="index.html">Home</a></li>
-					<li class="menu_item menu_mm"><a href="about.html">About us</a></li>
-					<li class="menu_item menu_mm"><a href="offers.html">Offers</a></li>
-					<li class="menu_item menu_mm"><a href="news.html">News</a></li>
+					<li class="menu_item menu_mm"><a href="index.php">Home</a></li>
+					<li class="menu_item menu_mm"><a href="about.php">About us</a></li>
 					<li class="menu_item menu_mm"><a href="#">Contact</a></li>
+					<?php
+						if(isset($_SESSION['email']))
+						{
+							echo '<li class="menu_item menu_mm"><a href="profile.php">Profile</a></li>';
+							echo '<li class="menu_item menu_mm"><a href="logout.php">Logout</a></li>';
+						}
+						else
+						{
+							echo '<li class="menu_item menu_mm"><a href="Login.php">Signin</a></li>';
+						}
+					?>
 				</ul>
 
 				<!-- Menu Social -->
@@ -162,7 +183,7 @@
 								<div>Destination:</div>
 								<input type="text" class="destination find_input" required="required" placeholder="Keyword here">
 							</div>
-							<div class="find_item">
+<!--							<div class="find_item">
 								<div>Adventure type:</div>
 								<select name="adventure" id="adventure" class="dropdown_item_select find_input">
 									<option>Categories</option>
@@ -185,7 +206,7 @@
 									<option>Price</option>
 									<option>Price</option>
 								</select>
-							</div>
+							</div>-->
 							<button class="button find_button">Find</button>
 						</form>
 					</div>
@@ -196,7 +217,7 @@
 
 	<!-- Contact -->
 
-	<div class="contact">
+<!--	<div class="contact">
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -243,7 +264,6 @@
 				</div>
 			</div>
 			<div class="row contact_map">
-				<!-- Google Map -->
 
 				<div class="col">
 					<div id="google_map">
@@ -255,12 +275,11 @@
 
 			</div>
 		</div>
-	</div>
+	</div>-->
 
 	<!-- Newsletter -->
 
-	<div class="newsletter">
-		<!-- Image by https://unsplash.com/@garciasaldana_ -->
+<!--	<div class="newsletter">
 		<div class="newsletter_background" style="background-image:url(images/newsletter.jpg)"></div>
 		<div class="container">
 			<div class="row">
@@ -279,18 +298,16 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 
 	<!-- Footer -->
 
-	<footer class="footer">
+	<!--<footer class="footer">
 		<div class="container">
 			<div class="row">
 
-				<!-- Footer Column -->
 				<div class="col-lg-4 footer_col">
 					<div class="footer_about">
-						<!-- Logo -->
 						<div class="logo_container">
 							<div class="logo">
 								<div>destino</div>
@@ -299,19 +316,17 @@
 							</div>
 						</div>
 						<div class="footer_about_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pulvinar sed mauris eget tincidunt. Sed lectus nulla, tempor vel eleifend quis, tempus rut rum metus. Pellentesque ultricies enim eu quam fermentum hendrerit.</div>
-						<div class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						<div class="copyright">
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+</div>
 					</div>
 				</div>
 
-				<!-- Footer Column -->
 				<div class="col-lg-4 footer_col">
 					<div class="footer_latest">
 						<div class="footer_title">Latest News</div>
 						<div class="footer_latest_content">
 
-							<!-- Footer Latest Post -->
 							<div class="footer_latest_item">
 								<div class="footer_latest_image"><img src="images/latest_1.jpg" alt="https://unsplash.com/@peecho"></div>
 								<div class="footer_latest_item_content">
@@ -320,7 +335,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								</div>
 							</div>
 
-							<!-- Footer Latest Post -->
 							<div class="footer_latest_item">
 								<div class="footer_latest_image"><img src="images/latest_2.jpg" alt="https://unsplash.com/@sanfrancisco"></div>
 								<div class="footer_latest_item_content">
@@ -333,7 +347,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					</div>
 				</div>
 
-				<!-- Footer Column -->
 				<div class="col-lg-4 footer_col">
 					<div class="tags footer_tags">
 						<div class="footer_title">Tags</div>
@@ -353,7 +366,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 			</div>
 		</div>
-	</footer>
+	</footer>-->
 </div>
 
 <script src="js/jquery-3.2.1.min.js"></script>

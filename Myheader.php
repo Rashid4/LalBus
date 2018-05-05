@@ -1,56 +1,182 @@
 <?php
-	function openmysqlconnection()
+    function openmysqlconnection()
+    {
+        $conn = mysqli_connect('127.0.0.1', 'root', '', 'dulalbus');
+        if(!$conn)
+        {
+            return null;
+        }
+        return $conn;
+    }
+    function closemysql($conn)
+    {
+        mysqli_close($conn);
+    }
+	function generate($length)
 	{
-		$conn = mysqli_connect('127.0.0.1', 'root', '', 'dulalbus');
-		if(!$conn)
-		{
-			return null;
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$charactersLength = strlen($characters);
+		$randomString = '';
+		for ($i = 0; $i < $length; $i++) {
+			$randomString .= $characters[rand(0, $charactersLength - 1)];
 		}
-		return $conn;
+		return $randomString;
 	}
-	function closemysql($conn)
+	function getIP()
 	{
-		mysqli_close($conn);
+		//common process to obtain client ip address.
+		/*if(!empty($_SERVER['HTTP_CLIENT_IP'])) $ip = $_SERVER['HTTP_CLIENT_IP']; //ip from shared internet
+		elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) $ip = $_SERVER['HTTP_X_FORWARDED_FOR']; //ip passed from proxy
+		else $ip = $_SERVER['REMOTE_ADDR'];
+		return $ip;*/
+
+		//REST API process.
+		$content = file_get_contents('https://ipapi.co/json/');
+		$decoded = json_decode($content);
+		return $decoded->ip;
 	}
-	function getBusName($conn, $id)
+	function getLatitude()
 	{
-		$sql = "SELECT busname from busid where busid = '" . $id . "'";
-		$result = mysqli_query($conn, $sql);
-		$row = mysqli_fetch_assoc($result);
-		return $row['busname'];
+		$ip = getIP();
+		$content = file_get_contents('https://ipapi.co/'.$ip.'/latitude');
+		return floatval($content) + 0.0017;
 	}
-	function getBusId($conn, $name)
+	function getLongitude()
 	{
-		$sql = "SELECT busid from busid where busname = '" . $name . "'";
-		$result = mysqli_query($conn, $sql);
-		$row = mysqli_fetch_assoc($result);
-		return $row['busid'];
+		$ip = getIP();
+		$content = file_get_contents('https://ipapi.co/'.$ip.'/longitude');
+		return floatval($content) - 0.0043;
 	}
-	function addDropdown()
+	function getDistance($lat1, $lon1, $lat2, $lon2)
+	{
+		$radius = 6371.0;
+		$dlat = ($lat2 - $lat1)*pi()/180;
+		$dlon = ($lon2 - $lon1)*pi()/180;
+		$a1 = sin($dlat/2) * sin($dlat/2) + cos($lat1*pi()/180) * cos($lat2*pi()/180) * sin($dlon/2) * sin($dlon/2);
+		$c = 2*atan2(sqrt($a1), sqrt(1-$a1));
+		$d = $radius * $c;
+		return $d;
+	}
+    function getBusName($conn, $id)
+    {
+        $sql = "SELECT busname from busid where busid = '" . $id . "'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        return $row['busname'];
+    }
+    function getBusId($conn, $name)
+    {
+        $sql = "SELECT busid from busid where busname = '" . $name . "'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        return $row['busid'];
+    }
+    function addDropdown()
+    {
+        $conn = openmysqlconnection();
+        $sql = "SELECT distinct busid FROM businfo";
+        $result = mysqli_query($conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            while($row = mysqli_fetch_assoc($result))
+            {
+                echo "<a href='Anando.php?var=".getBusName($conn, $row['busid'])."'>" . getBusName($conn, $row['busid']) . "</a><br>";
+            }
+        }
+        closemysql($conn);
+    }
+	function getBuslist()
 	{
 		$conn = openmysqlconnection();
-		$sql = "SELECT distinct busid FROM businfo";
+		$sql = "select busname from busid";
 		$result = mysqli_query($conn, $sql);
-		if(mysqli_num_rows($result)>0)
+		$list = [];
+		while($row = mysqli_fetch_assoc($result))
+		{
+			array_push($list, $row['busname']);
+		}
+		return $list;
+	}
+    function setTitle($var)
+    {
+        echo "<title>".$var."</title>";
+    }
+    function setBackground($bname)
+    {
+        $conn = openmysqlconnection();
+        $sql = "SELECT path FROM imagepath where busid = '".getBusId($conn, $bname)."'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        echo "background-image: url('".$row['path']."');";
+        closemysql($conn);
+    }
+	function showTrackHistory($busname)
+	{
+		$conn = openmysqlconnection();
+		$sql = "SELECT * FROM history WHERE busid = '".getBusId($conn, $busname)."'";
+		$result = mysqli_query($conn, $sql);
+		if(mysqli_num_rows($result) == 0)
+		{
+			echo "This bus has not shared its location yet<br>";
+		}
+		else
 		{
 			while($row = mysqli_fetch_assoc($result))
 			{
-				echo "<a href='Anando.php?var=".getBusName($conn, $row['busid'])."'>" . getBusName($conn, $row['busid']) . "</a><br>";
+				echo $busname." that departed at ".$row['start_time']." was at ".$row['latitude'].", ".$row['longitude']."<br>";
+				echo "(Last updated at ".$row['updated_time'].")<br>";
 			}
 		}
 		closemysql($conn);
 	}
-	function setTitle($var)
-	{
-		echo "<title>".$var."</title>";
-	}
-	function setBackground($bname)
+	function addAccount($user, $email, $pass, $stat, $session, $busid)
 	{
 		$conn = openmysqlconnection();
-		$sql = "SELECT path FROM imagepath where busid = '".getBusId($conn, $bname)."'";
+		$sql = "insert into userinfo (username, email, password, type, session, busid) values ('$user', '$email', '$pass', '$stat', '$session', '$busid')";
+		$result = mysqli_query($conn, $sql);
+		if(!$result)
+		{
+			echo "Error: ".$sql."<br>".mysqli_error($conn);
+		}
+		else
+		{
+			echo "Added to database<br>";
+		}
+	}
+	function checkLog($email, $pass)
+	{
+		$conn = openmysqlconnection();
+		$sql = "SELECT email, password FROM userinfo WHERE email = '$email'";
+		$result = mysqli_query($conn, $sql);
+		$folafol = "";
+		if(mysqli_num_rows($result) == 0)
+		{
+			$folafol = "unregistered";
+		}
+		else
+		{
+			$row = mysqli_fetch_assoc($result);
+			$password = $row['password'];
+			if($password == $pass)
+			{
+				$folafol = "OK";
+			}
+			else
+			{
+				$folafol = "passError";
+			}
+		}
+		closemysql($conn);
+		return $folafol;
+	}
+	function getInfo($email)
+	{
+		$conn = openmysqlconnection();
+		$sql = "SELECT * FROM userinfo WHERE email = '$email'";
 		$result = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_assoc($result);
-		echo "background-image: url('".$row['path']."');";
+		$row['busid'] = getBusName($conn, $row['busid']);
 		closemysql($conn);
+		return $row;
 	}
 ?>
