@@ -89,13 +89,13 @@
     function addDropdown()
     {
         $conn = openmysqlconnection();
-        $sql = "SELECT distinct busid FROM businfo";
+        $sql = "SELECT busname FROM busid ORDER BY busname ASC";
         $result = mysqli_query($conn, $sql);
         if(mysqli_num_rows($result)>0)
         {
             while($row = mysqli_fetch_assoc($result))
             {
-                echo "<a href='Anando.php?var=".getBusName($conn, $row['busid'])."'>" . getBusName($conn, $row['busid']) . "</a><br>";
+                echo "<a href='Anando.php?var=".$row['busname']."'>" . $row['busname'] . "</a><br>";
             }
         }
         closemysql($conn);
