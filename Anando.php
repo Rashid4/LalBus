@@ -80,9 +80,9 @@
 
 						<!-- Search -->
 						<div class="search">
-							<form action="search.php" class="search_form" method="post">
+							<form action="search.php" id="form2" class="search_form" method="post">
 								<input type="search" name="search_input" class="search_input ctrl_class" required="required" placeholder="Keyword">
-								<button type="submit" class="search_button ml-auto ctrl_class"><img src="images/search.png" alt=""></button>
+								<button type="submit" form="form2" class="search_button ml-auto ctrl_class"><img src="images/search.png" alt=""></button>
 							</form>
 						</div>
 
@@ -106,13 +106,13 @@
 		<div class="menu_inner menu_mm">
 			<div class="menu menu_mm">
 				<div class="menu_search_form_container">
-					<form action="#" id="menu_search_form">
-						<input type="search" class="menu_search_input menu_mm">
-						<button id="menu_search_submit" class="menu_search_submit" type="submit"><img src="images/search_2.png" alt=""></button>
+					<form action="search.php" id="menu_search_form" method="post">
+						<input type="search" name="search_input" class="menu_search_input menu_mm">
+						<button id="menu_search_submit" form="menu_search_form" class="menu_search_submit" type="submit"><img src="images/search_2.png" alt="S"></button>
 					</form>
 				</div>
 				<ul class="menu_list menu_mm">
-					<li class="menu_item menu_mm"><a href="#">Home</a></li>
+					<li class="menu_item menu_mm"><a href="index.php">Home</a></li>
 					<li class="menu_item menu_mm">
 						<div class="dropdown">
 							<a class="dropbtn" onclick="makeActive()" href="#">Bus</a>
@@ -123,8 +123,6 @@
 							</div>
 						</div>
 					</li>
-					<li class="menu_item menu_mm"><a href="index.php">Home</a></li>
-					<li class="menu_item menu_mm"><a href="#">Bus</a></li>
 					<li class="menu_item menu_mm"><a href="about.php">About us</a></li>
 					<li class="menu_item menu_mm"><a href="#">Contact</a></li>
 					<?php
@@ -158,7 +156,7 @@
 
 		</div>
 		
-		<div class="tab" ondblclick="document.getElementsByClassName('tab').style.width='100px'">
+		<div class="tab">
 			<button class="tablinks" onclick="openPage(event, 'Home')" id="defaultOpen">Home</button>
 			<button class="tablinks" onclick="openPage(event, 'Uptrip')">Uptrip</button>
 			<button class="tablinks" onclick="openPage(event, 'Downtrip')">Downtrip</button>
@@ -252,10 +250,10 @@
 			<h1>Location</h1>
 			<?php
 				showTrackHistory($_GET['var']);
-				echo "Location: ".getLatitude().", ".getLongitude()."<br>";
+				/*echo "Your location: ".getLatitude().", ".getLongitude()."<br>";
 				date_default_timezone_set("Asia/Dhaka");
 				echo "<br>Now time is: ".date("h:i:sa")."<br>";
-				echo "Distance: ".getDistance(23, 90, 23.1, 90.1)." km<br>";
+				echo "Distance: ".getDistance(23, 90, 23.1, 90.1)." km<br>";*/
 			?>
 		</div>
 		<script src="js/jquery-3.2.1.min.js"></script>

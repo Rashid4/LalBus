@@ -70,9 +70,9 @@
 
 						<!-- Search -->
 						<div class="search">
-							<form action="#" class="search_form">
+							<form action="search.php" id="con_form" class="search_form" method="post">
 								<input type="search" name="search_input" class="search_input ctrl_class" required="required" placeholder="Keyword">
-								<button type="submit" class="search_button ml-auto ctrl_class"><img src="images/search.png" alt=""></button>
+								<button type="submit" form="con_form" class="search_button ml-auto ctrl_class"><img src="images/search.png" alt=""></button>
 							</form>
 						</div>
 
@@ -98,9 +98,9 @@
 		<div class="menu_inner menu_mm">
 			<div class="menu menu_mm">
 				<div class="menu_search_form_container">
-					<form action="#" id="menu_search_form">
-						<input type="search" class="menu_search_input menu_mm">
-						<button id="menu_search_submit" class="menu_search_submit" type="submit"><img src="images/search_2.png" alt=""></button>
+					<form action="search.php" id="menu_search_form" method="post">
+						<input type="search" name="search_input" class="menu_search_input menu_mm">
+						<button id="menu_search_submit" form="menu_search_form" class="menu_search_submit" type="submit"><img src="images/search_2.png" alt=""></button>
 					</form>
 				</div>
 				<ul class="menu_list menu_mm">
@@ -174,14 +174,14 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
-					<div class="find_title text-center">Find the Adventure of a lifetime</div>
+					<div class="find_title text-center">Find stoppage of any DU lal bus</div>
 				</div>
 				<div class="col-12">
 					<div class="find_form_container">
-						<form action="#" id="find_form" class="find_form d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-md-between justify-content-start flex-wrap">
+						<form action="search.php" id="find_form" class="find_form d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-md-between justify-content-start flex-wrap" method="post">
 							<div class="find_item">
 								<div>Destination:</div>
-								<input type="text" class="destination find_input" required="required" placeholder="Keyword here">
+								<input type="text" name="search_input" class="destination find_input" required="required" placeholder="Keyword here">
 							</div>
 <!--							<div class="find_item">
 								<div>Adventure type:</div>
@@ -207,7 +207,7 @@
 									<option>Price</option>
 								</select>
 							</div>-->
-							<button class="button find_button">Find</button>
+							<button type="submit" form="find_form" class="button find_button">Find</button>
 						</form>
 					</div>
 				</div>

@@ -74,9 +74,9 @@
 
 						<!-- Search -->
 						<div class="search">
-							<form action="search.php" class="search_form" method="post">
+							<form action="search.php" id="form1" class="search_form" method="post">
 								<input type="search" name="search_input" class="search_input ctrl_class" required="required" placeholder="Keyword">
-								<button type="submit" class="search_button ml-auto ctrl_class"><img src="images/search.png" alt=""></button>
+								<button type="submit" form="form1" class="search_button ml-auto ctrl_class"><img src="images/search.png" alt=""></button>
 							</form>
 						</div>
 
@@ -102,9 +102,9 @@
 		<div class="menu_inner menu_mm">
 			<div class="menu menu_mm">
 				<div class="menu_search_form_container">
-					<form action="#" id="menu_search_form">
-						<input type="search" class="menu_search_input menu_mm">
-						<button id="menu_search_submit" class="menu_search_submit" type="submit"><img src="images/search_2.png" alt=""></button>
+					<form action="search.php" id="menu_search_form" method="post">
+						<input type="search" name="search_input" class="menu_search_input menu_mm">
+						<button id="menu_search_submit" form="menu_search_form" class="menu_search_submit" type="submit"><img src="images/search_2.png" alt=""></button>
 					</form>
 				</div>
 				<ul class="menu_list menu_mm">
@@ -178,10 +178,10 @@
 				</div>
 				<div class="col-12">
 					<div class="find_form_container">
-						<form action="search.php" id="find_form" class="find_form d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-md-between justify-content-start flex-wrap">
+						<form action="search.php" id="find_form" class="find_form d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-md-between justify-content-start flex-wrap" method="post">
 							<div class="find_item">
 								<div>Destination:</div>
-								<input type="text" class="destination find_input" name="dest" required="required" placeholder="Keyword here">
+								<input type="text" class="destination find_input" name="search_input" required="required" placeholder="Keyword here">
 							</div>
 <!--							<div class="find_item">
 								<div>Adventure type:</div>
@@ -208,7 +208,7 @@
 								</select>
 							</div>-->
 							<!--<button class="button find_button">Find</button>-->
-							<input type="submit" class="button find_button" value="Find"/>
+							<button form="find_form" type="submit" class="button find_button">Find</button>
 						</form>
 					</div>
 				</div>

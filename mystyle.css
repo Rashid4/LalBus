@@ -1,3 +1,24 @@
+.search_result
+{
+	margin-top: 200px;
+	text-align: center;
+	background-color: #131a2f;
+	opacity: 0.6;
+}
+.search_result p{
+	font-size: 20px;
+	color: white;
+}
+.search_result a{
+	text-decoration: none;
+	color: linen;
+}
+.search_result a:hover{
+	color: white;
+}
+.search_result u{
+	text-decoration: underline wavy;
+}
 /* Dropdown Button */
 .dropbtn {
     border: none;

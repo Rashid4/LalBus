@@ -69,9 +69,9 @@
 
 						<!-- Search -->
 						<div class="search">
-							<form action="#" class="search_form">
+							<form action="search.php" id="form1" class="search_form" method="post">
 								<input type="search" name="search_input" class="search_input ctrl_class" required="required" placeholder="Keyword">
-								<button type="submit" class="search_button ml-auto ctrl_class"><img src="images/search.png" alt=""></button>
+								<button type="submit" form="form1" class="search_button ml-auto ctrl_class"><img src="images/search.png" alt=""></button>
 							</form>
 						</div>
 
@@ -97,9 +97,9 @@
 		<div class="menu_inner menu_mm">
 			<div class="menu menu_mm">
 				<div class="menu_search_form_container">
-					<form action="search.php" id="menu_search_form">
+					<form action="search.php" id="menu_search_form" method="post">
 						<input type="search" name="search_input" class="menu_search_input menu_mm">
-						<button id="menu_search_submit" class="menu_search_submit" type="submit"><img src="images/search_2.png" alt=""></button>
+						<button id="menu_search_submit" form="menu_search_form" class="menu_search_submit" type="submit"><img src="images/search_2.png" alt=""></button>
 					</form>
 				</div>
 				<ul class="menu_list menu_mm">
@@ -173,16 +173,16 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
-					<div class="find_title text-center">Find the Adventure of a lifetime</div>
+					<div class="find_title text-center">Find a stopage of any DU Lal bus</div>
 				</div>
 				<div class="col-12">
 					<div class="find_form_container">
-						<form action="#" id="find_form" class="find_form d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-md-between justify-content-start flex-wrap">
+						<form action="search.php" id="find_form" class="find_form d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-md-between justify-content-start flex-wrap" method="post">
 							<div class="find_item">
 								<div>Destination:</div>
-								<input type="text" class="destination find_input" required="required" placeholder="Keyword here">
+								<input type="text" class="destination find_input" name="search_input" required="required" placeholder="Keyword here">
 							</div>
-							<div class="find_item">
+							<!--<div class="find_item">
 								<div>Adventure type:</div>
 								<select name="adventure" id="adventure" class="dropdown_item_select find_input">
 									<option>Categories</option>
@@ -205,8 +205,8 @@
 									<option>Price</option>
 									<option>Price</option>
 								</select>
-							</div>
-							<button class="button find_button">Find</button>
+							</div>-->
+							<button class="button find_button" type="submit" form="find_form">Find</button>
 						</form>
 					</div>
 				</div>
@@ -221,7 +221,7 @@
 			<div class="row">
 				<div class="col">
 					<div class="section_title text-center">
-						<h2>We are an award winning Agency</h2>
+						<!--<h2>We are an award winning Agency</h2>-->
 						<div>take a look at our story</div>
 					</div>
 				</div>
@@ -229,13 +229,19 @@
 			<div class="row about_row">
 				<div class="col-lg-6 about_col order-lg-1 order-2">
 					<div class="about_content">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla lectus nec diam auctor, ut fringilla diam sagittis. Quisque vel est id justo faucibus dapibus id a nibh. Aenean suscipit consequat lacus, sit amet mollis nulla. Morbi sagittis orci id lacus convallis tempus eget sit amet metus. Sed finibus, magna at euismod aliquet, enim justo vulputate lorem, sit amet elementum dolor eros sollicitudin dui. Sed ac magna mauris. Nullam lectus odio, viverra vel mi id, interdum imperdiet nulla. </p>
-						<div class="button about_button"><a href="#">Read More</a></div>
+						<p>
+							Introducing ourselves. Imran hossain imon (image on just aside), University of Dhaka.
+							Department of Computer Science.<br>
+							Rashid Ahmed(image just below of Imon), University of Dhaka, Department of Computer Science.
+							We are both of 2014-15 session.
+						</p>
+						<!--<div class="button about_button"><a href="#">Read More</a></div>-->
 					</div>
 				</div>
 				<div class="col-lg-6 about_col order-lg-2 order-1">
 					<div class="about_image">
-						<img src="images/about.jpg" alt="https://unsplash.com/@sanfrancisco">
+						<img src="images/im.jpg" alt="https://unsplash.com/@sanfrancisco">
+						<img src="images/Minar.jpg">
 					</div>
 				</div>
 			</div>

@@ -162,11 +162,11 @@
 
 					<?php
 						if($_SESSION['status'] == 'student'){
-						echo '<div class="w3l-common">	
-						<span><i class="fa fa-mobile w31-3" aria-hidden="true"></i></span>
-						<p>'.$_SESSION["session"].'</p>
-						<div class="clear"></div>
-						</div>';
+						echo '<div class="w3l-common">
+							<span><i class="fa fa-mobile w31-3" aria-hidden="true"></i></span>
+							<p>'.$_SESSION["session"].'</p>
+							<div class="clear"></div>
+							</div>';
 						}
 					?>
 
@@ -180,7 +180,17 @@
 						if($_SESSION['status'] == 'driver')
 						{
 							echo '<div class="w31-common">
-								<a href="temp.php">Check in</a>
+								<form action="temp.php" method="post">
+								<p>Select start time of your bus</p>
+								<select name="startTime">';
+							$arr = getStartTime($_SESSION['bus']);
+							foreach($arr as $value)
+							{
+								echo '<option value="'.$value.'">'.$value.'</option>';
+							}
+							echo'</select>
+								<input type="submit" value="Check in"/>
+								</form>
 								</div>';
 						}
 					?>

@@ -1,8 +1,7 @@
 <?php
 	session_start();
+	include "Myheader.php";
 	$searchkey = "";
-	if(isset($_POST['dest'])) $searchkey = $_POST['dest'];
-	else header('location: index.php');
 	
 	if(isset($_POST['search_input'])) $searchkey = $_POST['search_input'];
 	else header('location: index.php');
@@ -25,6 +24,14 @@
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
 <link rel="stylesheet" type="text/css" href="mystyle.css">
 <link rel="icon" href="images/DU.PNG">
+<style>
+	body{
+		background: url('images/about.jpg');
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: 100% 100%;
+	}
+</style>
 </head>
 <body>
 	<header class="header">
@@ -153,18 +160,20 @@
 		</div>
 
 	</div>
+	<div class="search_result">
 	<?php
 		$conn = openmysqlconnection();
 		$sql = "SELECT * from businfo";
 		$result = mysqli_query($conn, $sql);
 		while($row = mysqli_fetch_assoc($result))
 		{
-			if(strpos($row['stopage'], $searchkey))
+			if(strpos($row['stopage'], $searchkey) !== false)
 			{
-				echo $row['stopage'] . " can be reached by " . getBusName($conn, $row['busid']) . "<br>";
+				echo "<p><u>".$row['stopage'] . "</u> can be reached by <a href='Anando.php?var=".getBusName($conn, $row['busid'])."'>" . getBusName($conn, $row['busid']) . "</a></p>";
 			}
 		}
 		closemysql($conn);
 	?>
+	</div>
 </body>
 </html>

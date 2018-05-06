@@ -71,6 +71,21 @@
         $row = mysqli_fetch_assoc($result);
         return $row['busid'];
     }
+	function getStartTime($busname)
+	{
+		$conn = openmysqlconnection();
+		$busid = getBusId($conn, $busname);
+		$arr = [];
+		$sql = "SELECT schedule from uptrip WHERE busid = '$busid'";
+		$result = mysqli_query($conn, $sql);
+		while($row = mysqli_fetch_assoc($result)) array_push($arr, $row['schedule']);
+		
+		$sql = "SELECT schedule from downtrip WHERE busid = '$busid'";
+		$result = mysqli_query($conn, $sql);
+		while($row = mysqli_fetch_assoc($result)) array_push($arr, $row['schedule']);
+		closemysql($conn);
+		return $arr;
+	}
     function addDropdown()
     {
         $conn = openmysqlconnection();
@@ -123,8 +138,8 @@
 		{
 			while($row = mysqli_fetch_assoc($result))
 			{
-				echo $busname." that departed at ".$row['start_time']." was at ".$row['latitude'].", ".$row['longitude']."<br>";
-				echo "(Last updated at ".$row['updated_time'].")<br>";
+				echo "<br>".$busname." that departed at ".$row['start_time']." was at <a href='https://maps.google.com?q=".$row['latitude'].",".$row['longitude']."' target='_blank'>".$row['latitude'].", ".$row['longitude']."</a><br>";
+				echo "(Last updated at day ".$row['tarikh']." time ".$row['updated_time'].")<br>";
 			}
 		}
 		closemysql($conn);
