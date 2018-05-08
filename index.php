@@ -119,8 +119,6 @@
 							</div>
 						</div>
 					</li>
-					<li class="menu_item menu_mm"><a href="#">Home</a></li>
-					<li class="menu_item menu_mm"><a href="#">Bus</a></li>
 					<li class="menu_item menu_mm"><a href="about.php">About us</a></li>
 					<li class="menu_item menu_mm"><a href="contact.php">Contact</a></li>
 					<?php

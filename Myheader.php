@@ -25,10 +25,13 @@
 	function getIP()
 	{
 		//common process to obtain client ip address.
-		/*if(!empty($_SERVER['HTTP_CLIENT_IP'])) $ip = $_SERVER['HTTP_CLIENT_IP']; //ip from shared internet
+		if(!empty($_SERVER['HTTP_CLIENT_IP'])) $ip = $_SERVER['HTTP_CLIENT_IP']; //ip from shared internet
 		elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) $ip = $_SERVER['HTTP_X_FORWARDED_FOR']; //ip passed from proxy
 		else $ip = $_SERVER['REMOTE_ADDR'];
-		return $ip;*/
+		if($ip != "::1")
+		{
+			return $ip;
+		}
 
 		//REST API process.
 		$content = file_get_contents('https://ipapi.co/json/');
@@ -139,7 +142,7 @@
 			while($row = mysqli_fetch_assoc($result))
 			{
 				echo "<br>".$busname." that departed at ".$row['start_time']." was at <a href='https://maps.google.com?q=".$row['latitude'].",".$row['longitude']."' target='_blank'>".$row['latitude'].", ".$row['longitude']."</a><br>";
-				echo "(Last updated at day ".$row['tarikh']." time ".$row['updated_time'].")<br>";
+				echo "(This info has been updated at day ".$row['tarikh']." time ".$row['updated_time'].")<br>";
 			}
 		}
 		closemysql($conn);

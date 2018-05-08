@@ -250,7 +250,8 @@
 			<h1>Location</h1>
 			<?php
 				showTrackHistory($_GET['var']);
-				/*echo "Your location: ".getLatitude().", ".getLongitude()."<br>";
+				/*echo getIP();
+				echo "Your location: ".getLatitude().", ".getLongitude()."<br>";
 				date_default_timezone_set("Asia/Dhaka");
 				echo "<br>Now time is: ".date("h:i:sa")."<br>";
 				echo "Distance: ".getDistance(23, 90, 23.1, 90.1)." km<br>";*/

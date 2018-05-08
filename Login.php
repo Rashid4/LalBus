@@ -8,7 +8,7 @@
 	}
 	if(isset($_GET['err']))
 	{
-		if($_GET['err'] == 'p') $err = 'Registered but password not correct. If you forgot your password you can reset it <a href="reset.php">here</a>';
+		if($_GET['err'] == 'p') $err = 'Registered but password not correct.';
 		if($_GET['err'] == 'u') $err = 'You are not registered. register <a href="register.php">here</a>';
 	}
 ?>
