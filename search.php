@@ -162,6 +162,7 @@
 	</div>
 	<div class="search_result">
 	<?php
+		//echo "<p>You have searched '".$searchkey."'</p>";
 		$conn = openmysqlconnection();
 		$sql = "SELECT * from businfo";
 		$result = mysqli_query($conn, $sql);

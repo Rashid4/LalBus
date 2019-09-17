@@ -192,11 +192,11 @@ CREATE TABLE `userinfo` (
 -- Dumping data for table `userinfo`
 --
 
-LOCK TABLES `userinfo` WRITE;
+/*LOCK TABLES `userinfo` WRITE;*/
 /*!40000 ALTER TABLE `userinfo` DISABLE KEYS */;
-INSERT INTO `userinfo` VALUES ('hashib','hashibmahmud92@gmail.com','asdf12','student','2018-19','BUS-A');
+/*INSERT INTO `userinfo` VALUES ('hashib','hashibmahmud92@gmail.com','asdf12','student','2018-19','BUS-A');*/
 /*!40000 ALTER TABLE `userinfo` ENABLE KEYS */;
-UNLOCK TABLES;
+/*UNLOCK TABLES;*/
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

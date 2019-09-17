@@ -8,7 +8,7 @@
 		$email = $_POST['useremail'];
 		$stat = $_POST['status'];
 		$sessionyear = $_POST['sessionYear'];
-		$password = md5($_POST['firstPass']);
+		$password = $_POST['firstPass'];
 		$conn = openmysqlconnection();
 		$busid = getBusId($conn, $_POST['bus']);
 		closemysql($conn);
@@ -24,7 +24,7 @@
 	else if(isset($_POST['logemail']))
 	{
 		$email = $_POST['logemail'];
-		$pass = md5($_POST['logpass']);
+		$pass = $_POST['logpass'];
 		$result = checkLog($email, $pass);
 		if($result == "OK")
 		{
